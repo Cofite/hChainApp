@@ -1,2 +1,2 @@
 # hChainApp
-Application  on the platform of hyperChain
+Application base on the platform of hyperChain
