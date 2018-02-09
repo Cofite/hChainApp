@@ -15,34 +15,35 @@ import java.util.Set;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public final class SystemConfigManager {
+public enum SystemConfigManager {
+    INSTANCE;
 
     private static final Logger logger = LoggerFactory.getLogger(SystemConfigManager.class.getName());
-    private static final Map<String, Object> props = new HashMap<String, Object>();
+    private Map<String, Object> props;
 
-    private SystemConfigManager() {
-    }
-
-    public static void init(final Properties properties) {
-        putProps(properties);
-    }
-
-    public static void putProps(final String key, final Object value) {
-        props.put(key, value);
-    }
-
-    public static void putProps(final Properties properties) {
-        final Set<String> propNames = properties.stringPropertyNames();
-        for (final String propName : propNames) {
-            props.put(propName, properties.getProperty(propName));
+    public void init(final Properties properties) {
+        if (this.props == null) {
+            this.props = new HashMap<String, Object>();
+            putProps(properties);
         }
     }
 
-    public static Object getProps(final String key) {
-        return props.get(key);
+    public void putProps(final String key, final Object value) {
+        this.props.put(key, value);
     }
 
-    public static String getStringProps(final String key) {
+    public void putProps(final Properties properties) {
+        final Set<String> propNames = properties.stringPropertyNames();
+        for (final String propName : propNames) {
+            this.props.put(propName, properties.getProperty(propName));
+        }
+    }
+
+    public Object getProps(final String key) {
+        return this.props.get(key);
+    }
+
+    public String getStringProps(final String key) {
         final Object object = getProps(key);
         if (object instanceof String) {
             return (String) object;

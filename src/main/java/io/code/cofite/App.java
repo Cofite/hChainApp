@@ -13,7 +13,7 @@ public class App {
     public static void main(final String[] args) throws IOException {
         final App app = new App();
         app.init();
-        ApiFactoryManager.INSTANCE.getApi().pageBlocks(AccessTokenManager.getAccessToken(), 0, 1);
+        ApiFactoryManager.INSTANCE.pageBlocks(0, 1);
 
         final Logger logger = LoggerFactory.getLogger(App.class);
         logger.debug("-----log debug");
@@ -25,7 +25,7 @@ public class App {
     public void init() throws IOException {
         final Properties settings = new Properties();
         settings.load(ClassLoader.getSystemResourceAsStream("settings.properties"));
-        SystemConfigManager.init(settings);
-        AccessTokenManager.init();
+        SystemConfigManager.INSTANCE.init(settings);
+        AccessTokenManager.INSTANCE.init();
     }
 }
