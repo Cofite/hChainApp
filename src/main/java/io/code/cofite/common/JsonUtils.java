@@ -1,10 +1,3 @@
-// Copyright (c) 1998-2018 Core Solutions Limited. All rights reserved.
-// ============================================================================
-// CURRENT VERSION CNT.8.x
-// ============================================================================
-// CHANGE LOG
-// CNT.8.x : 2018-02-09, winton.fang, creation
-// ============================================================================
 package io.code.cofite.common;
 
 import cn.qsnark.sdk.rpc.returns.CompileReturn;
